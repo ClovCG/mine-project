@@ -5,7 +5,6 @@ var secs: int = 0
 var mins: int = 0
 var str_secs: String = "0"
 var str_mins: String = "0"
-
 var delta_time: float = 0.0
 var stopped: bool = false
 

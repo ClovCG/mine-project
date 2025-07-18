@@ -18,3 +18,7 @@ func get_inbounds_adjacent_ranges(x: int, y: int, rows: int, columns: int) -> Di
 func print_tiles(tiles: Array[Array], rows: int) -> void:
 	for row in range(rows):
 		print(tiles[row])
+
+# Gets a list of custom actions from the Input Map
+func get_custom_actions() -> Array[StringName]:
+	return InputMap.get_actions().filter(func(action): return !action.contains("ui_"))

@@ -1,17 +1,16 @@
 class_name MineGrid extends GridContainer
 
-@onready var timer: IngameTimer = $"../IngameTimer"
+const tile_scene: PackedScene = preload("res://Scenes/PackedScenes/tile.tscn")
 
 @export var mines: int = 10
 @export var rows: int = 1
 
 var tiles_left: int
 var mine_position: Array[int] = []
-var empty_checked_position: Array[int] = []
 var tiles: Array[Array] = []
 var tiles_dict: Dictionary = {} # "mine_position": MineTile
 
-const tile_scene: PackedScene = preload("res://Scenes/PackedScenes/tile.tscn")
+@onready var timer: IngameTimer = $"../IngameTimer"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,12 +21,20 @@ func _ready() -> void:
 	tiles_left = rows * self.columns
 	
 	# Once everything is reset, set up the new grid
+	mines += Game.level
+	Game.flags = mines
 	set_up()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventJoypadButton or event is InputEventKey:
+		if InputMap.event_is_action(event, "start"):
+			Game.restart()
 
 func set_up() -> void:
 	# Start preparing the field
@@ -40,6 +47,8 @@ func set_up() -> void:
 			tile.pos = tile_pos
 			tiles[row].append(0)
 			tiles_dict[str(tile_pos)] = tile
+	
+	tiles_dict["0"].grab_focus()
 	
 	# Start setting up the mines
 	for i in self.mines:
