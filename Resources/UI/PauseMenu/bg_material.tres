@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://sx4trf4408mv"]
+
+[ext_resource type="Shader" path="res://Resources/UI/PauseMenu/pause_menu.gdshader" id="1_jidek"]
+
+[resource]
+shader = ExtResource("1_jidek")
+shader_parameter/lod = 2.0

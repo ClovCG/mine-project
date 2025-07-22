@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://kty4r1vss8ip"]
+[gd_scene load_steps=10 format=3 uid="uid://kty4r1vss8ip"]
 
 [ext_resource type="Script" path="res://Scripts/Game/game.gd" id="1_it8sk"]
 [ext_resource type="Script" path="res://Scripts/Game/mine_grid.gd" id="2_kcg7k"]
+[ext_resource type="Theme" uid="uid://dxgmy2frydty" path="res://Resources/UI/Button/button_theme.tres" id="3_1hsi1"]
 [ext_resource type="Script" path="res://Scripts/Timer/timer.gd" id="3_7rdib"]
-[ext_resource type="Script" path="res://Scripts/Level/restart_button.gd" id="3_lhsww"]
-[ext_resource type="LabelSettings" uid="uid://dc77krh0acv41" path="res://Resources/UI/timer_label_settings.tres" id="4_5f4hn"]
+[ext_resource type="Script" path="res://Scripts/Level/pause_button.gd" id="3_lhsww"]
+[ext_resource type="LabelSettings" uid="uid://dc77krh0acv41" path="res://Resources/UI/Timer/timer_label_settings.tres" id="4_5f4hn"]
 [ext_resource type="Script" path="res://Scripts/Timer/timer_ui.gd" id="4_x2sf4"]
 [ext_resource type="Script" path="res://Scripts/Level/level_ui.gd" id="6_aum0h"]
+[ext_resource type="PackedScene" uid="uid://ck5r3o4fypx2n" path="res://Scenes/pause_menu.tscn" id="8_cf6d8"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_it8sk")
@@ -16,18 +18,19 @@ offset_left = 50.0
 offset_top = 50.0
 offset_right = 550.0
 offset_bottom = 550.0
-focus_neighbor_right = NodePath("../Button")
+focus_neighbor_right = NodePath("../PauseButton")
 focus_mode = 2
 columns = 10
 script = ExtResource("2_kcg7k")
 rows = 10
 
-[node name="Button" type="Button" parent="."]
+[node name="PauseButton" type="Button" parent="."]
 offset_left = 1000.0
 offset_top = 550.0
 offset_right = 1095.0
 offset_bottom = 592.0
-text = "Restart"
+theme = ExtResource("3_1hsi1")
+text = "Pause"
 script = ExtResource("3_lhsww")
 
 [node name="IngameTimer" type="Node" parent="."]
@@ -75,4 +78,54 @@ label_settings = ExtResource("4_5f4hn")
 horizontal_alignment = 2
 script = ExtResource("6_aum0h")
 
-[connection signal="gui_input" from="Button" to="Button" method="_on_button_pressed"]
+[node name="PauseMenu" parent="." instance=ExtResource("8_cf6d8")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1152.0
+offset_bottom = 647.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="TODOText" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 655.0
+offset_top = 351.0
+offset_right = 956.0
+offset_bottom = 595.0
+text = "TODO:
+	- How to play menu
+	- On win/lose:
+		- Show restart/next level button
+		- Show exit button
+		- Block pause"
+
+[node name="ControlsText" type="RichTextLabel" parent="."]
+offset_left = 655.0
+offset_top = 50.0
+offset_right = 956.0
+offset_bottom = 550.0
+text = "Controls:
+	- Dig:
+		- Keyboard: E
+		- Mouse: Left Click
+		- Gamepad:
+			Cross (PS)
+			A (Xbox)
+			B (Switch)
+
+	- Set/Remove flag:
+		- Keyboard: F
+		- Mouse: Right click
+		- Gamepad:
+			Square (PS)
+			X (Xbox)
+			Y (Switch)
+
+	- Pause
+		Keyboard: ESC
+		Mouse: The button on the corner
+		Gamepad: Options/Start/+"
+
+[connection signal="pressed" from="PauseButton" to="PauseButton" method="_on_pause_button_pressed"]

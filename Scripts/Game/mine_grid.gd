@@ -11,6 +11,7 @@ var tiles: Array[Array] = []
 var tiles_dict: Dictionary = {} # "mine_position": MineTile
 
 @onready var timer: IngameTimer = $"../IngameTimer"
+@onready var pause_menu: PauseMenu = $"../PauseMenu"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,17 +25,11 @@ func _ready() -> void:
 	mines += Game.level
 	Game.flags = mines
 	set_up()
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventJoypadButton or event is InputEventKey:
-		if InputMap.event_is_action(event, "start"):
-			Game.restart()
 
 func set_up() -> void:
 	# Start preparing the field
@@ -91,6 +86,6 @@ func show_adjacent_tiles(x: int, y: int) -> void:
 
 # This method is called when the game ends, regardless of the result
 func reveal_mines() -> void:
-	timer.stop()
+	timer.stopped = true
 	for mine_pos in mine_position:
 		tiles_dict[str(mine_pos)].show_tile()

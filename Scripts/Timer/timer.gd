@@ -16,7 +16,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if not stopped:
+	if Game.game_state == Game.GAME_STATE.IN_PROGRESS:
 		increase_delta(delta)
 
 func increase_delta(delta: float) -> void:
@@ -41,5 +41,5 @@ func reset() -> void:
 	str_mins = "0"
 	delta_time = 0.0
 
-func stop() -> void:
-	stopped = true
+func timer_toggle() -> void:
+	stopped = !stopped

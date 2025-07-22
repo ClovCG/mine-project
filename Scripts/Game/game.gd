@@ -3,6 +3,7 @@ extends Node2D
 enum GAME_STATE {
 	LOADING,
 	IN_PROGRESS,
+	PAUSED,
 	CLEARED,
 	LOST
 }
@@ -12,9 +13,12 @@ enum GAME_STATE {
 var level: int = 0
 var game_state: GAME_STATE = GAME_STATE.LOADING
 var flags_used: int = 0
-
-# TODO: Add a pause menu -> Continue - Restart - Quit
+var prev_focused_tile: MineTile
 
 # Restarts the game/scene
 func restart() -> void:
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+
+
+func update_game_state(new_game_state: GAME_STATE) -> void:
+	self.game_state = new_game_state
