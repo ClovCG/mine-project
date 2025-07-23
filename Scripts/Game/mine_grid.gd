@@ -11,6 +11,7 @@ var tiles: Array[Array] = []
 var tiles_dict: Dictionary = {} # "mine_position": MineTile
 
 @onready var timer: IngameTimer = $"../IngameTimer"
+@onready var pause_button: PauseButton = $"../PauseButton"
 @onready var pause_menu: PauseMenu = $"../PauseMenu"
 
 # Called when the node enters the scene tree for the first time.
@@ -41,8 +42,16 @@ func set_up() -> void:
 			self.add_child(tile)
 			tile.pos = tile_pos
 			tiles[row].append(0)
+			# Share the right neighbor of the grid with the last tile in each row
+			if col == 9:
+				tile.focus_next = NodePath(pause_button.get_path())
+				tile.focus_neighbor_right = NodePath(pause_button.get_path())
 			tiles_dict[str(tile_pos)] = tile
 	
+	# Set last tilefor both previous/next and if moving to the left from the pause button
+	pause_button.focus_previous = NodePath(tiles_dict["99"].get_path())
+	pause_button.focus_next = NodePath(tiles_dict["99"].get_path())
+	pause_button.focus_neighbor_left = NodePath(tiles_dict["99"].get_path())
 	tiles_dict["0"].grab_focus()
 	
 	# Start setting up the mines

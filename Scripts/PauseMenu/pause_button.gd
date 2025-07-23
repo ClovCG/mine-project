@@ -12,6 +12,9 @@ func _process(_delta: float) -> void:
 	pass
 
 # Called on UI button pressed (Mouse)
-# Start on keyboard/gamepad inputs is handled on mine_grid.gd
 func _on_pause_button_pressed() -> void:
 	pause_menu.show_pause_menu()
+
+func _on_pause_button_input_pressed(event: InputEvent) -> void:
+	if InputMap.event_is_action(event, "accept") and event.is_pressed():
+		pause_menu.show_pause_menu()

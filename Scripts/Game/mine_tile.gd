@@ -17,7 +17,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	outline.visible = self.has_focus()
 
-
+# SIGNAL METHODS #
 func _on_mouse_entered() -> void:
 	outline.visible = true
 	self.grab_focus()

@@ -1,6 +1,6 @@
 extends Node
 
-# Fetch a range of adjacent tile positions inside the given boundaries
+## Fetch a range of adjacent tile positions inside the given boundaries inside the grid.
 func get_inbounds_adjacent_ranges(x: int, y: int, rows: int, columns: int) -> Dictionary:
 	var x_min: int = x - 1 if x - 1 >= 0 else 0
 	var x_max: int = x + 1 if x + 1 <= columns-1 else columns-1
@@ -14,11 +14,11 @@ func get_inbounds_adjacent_ranges(x: int, y: int, rows: int, columns: int) -> Di
 		"y_max": y_max
 	}
 
-# Prints the grid values on console (for debugging purposes)
+## Prints the grid values on console (for debugging purposes).
 func print_tiles(tiles: Array[Array], rows: int) -> void:
 	for row in range(rows):
 		print(tiles[row])
 
-# Gets a list of custom actions from the Input Map
+## Gets a list of custom actions from the Input Map.
 func get_custom_actions() -> Array[StringName]:
 	return InputMap.get_actions().filter(func(action): return !action.contains("ui_"))

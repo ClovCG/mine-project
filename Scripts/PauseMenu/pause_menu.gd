@@ -31,6 +31,7 @@ func show_pause_menu() -> void:
 	prev_game_state = Game.game_state
 	Game.update_game_state(Game.GAME_STATE.PAUSED)
 	self.visible = true
+	menu_container.visible = true
 	# Gets the current node with focus so it's returned to it after pressing continue
 	prev_focus_node = get_viewport().gui_get_focus_owner()
 	continue_button.grab_focus()
@@ -39,48 +40,53 @@ func hide_pause_menu() -> void:
 	# Returns the focus to the previous owner before opening the pause menu
 	prev_focus_node.grab_focus()
 	Game.update_game_state(prev_game_state)
+	options_container.visible = false
 	self.visible = false
 
-# TODO: Fix options menu not showing because instantiate returns null
 func show_options_menu() -> void:
 	menu_container.visible = false
 	options_container.visible = true
 	options_container.back_button.grab_focus()
 
-
-func on_continue_pressed() -> void:
+# SIGNAL METHODS #
+func _on_continue_pressed() -> void:
 	hide_pause_menu()
 
-func on_continue_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, "accept"):
+func _on_continue_input_pressed(event: InputEvent) -> void:
+	if InputMap.event_is_action(event, "accept") and event.is_pressed():
 		hide_pause_menu()
 
 
-func on_restart_pressed() -> void:
+func _on_restart_pressed() -> void:
 	Game.restart()
 
-func on_restart_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, "accept"):
+func _on_restart_input_pressed(event: InputEvent) -> void:
+	if InputMap.event_is_action(event, "accept") and event.is_pressed():
 		Game.restart()
 
 
-func on_options_pressed() -> void:
+func _on_options_pressed() -> void:
 	show_options_menu()
 
-func on_options_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, "accept"):
-		Game.restart()
+func _on_options_input_pressed(event: InputEvent) -> void:
+	if InputMap.event_is_action(event, "accept") and event.is_pressed():
+		show_options_menu()
 
-func on_return_to_menu_pressed() -> void:
+func _on_return_to_menu_pressed() -> void:
 	options_container.visible = false
 	menu_container.visible = true
 	options_button.grab_focus()
-	
+
+func _on_return_to_menu_input_pressed(event: InputEvent) -> void:
+	if InputMap.event_is_action(event, "accept") and event.is_pressed():
+		options_container.visible = false
+		menu_container.visible = true
+		options_button.grab_focus()
 
 
-func on_quit_pressed() -> void:
+func _on_quit_pressed() -> void:
 	get_tree().quit()
 
-func on_quit_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, "accept"):
+func _on_quit_input_pressed(event: InputEvent) -> void:
+	if InputMap.event_is_action(event, "accept") and event.is_pressed():
 		get_tree().quit()

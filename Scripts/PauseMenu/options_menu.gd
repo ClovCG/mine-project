@@ -7,4 +7,5 @@ var menu_container: PauseMenu
 
 func _ready() -> void:
 	menu_container = get_parent_control()
-	back_button.connect("pressed", func(): menu_container.on_return_to_menu_pressed())
+	back_button.connect("pressed", func(): menu_container._on_return_to_menu_pressed())
+	back_button.connect("gui_input", func(event: InputEvent): menu_container._on_return_to_menu_input_pressed(event))
