@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bv5d848k804vu"]
 
-[ext_resource type="Script" path="res://Scripts/Game/mine_tile.gd" id="1_a8shm"]
+[ext_resource type="Script" path="res://Scripts/Game/mine_tile.gd" id="1_oqevy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rc5l2"]
 outline_size = 5
@@ -13,7 +13,7 @@ shadow_offset = Vector2(2, 2)
 custom_minimum_size = Vector2(50, 50)
 focus_mode = 2
 color = Color(0.6, 0.6, 0.6, 1)
-script = ExtResource("1_a8shm")
+script = ExtResource("1_oqevy")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

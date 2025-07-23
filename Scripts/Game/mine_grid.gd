@@ -1,6 +1,6 @@
 class_name MineGrid extends GridContainer
 
-const tile_scene: PackedScene = preload("res://Scenes/PackedScenes/tile.tscn")
+const tile_scene: PackedScene = preload("res://Scenes/PackedScenes/Game/tile.tscn")
 
 @export var mines: int = 10
 @export var rows: int = 1

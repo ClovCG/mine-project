@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://Scripts/Game/mine_grid.gd" id="2_kcg7k"]
 [ext_resource type="Theme" uid="uid://dxgmy2frydty" path="res://Resources/UI/Button/button_theme.tres" id="3_1hsi1"]
 [ext_resource type="Script" path="res://Scripts/Timer/timer.gd" id="3_7rdib"]
-[ext_resource type="Script" path="res://Scripts/Level/pause_button.gd" id="3_lhsww"]
+[ext_resource type="Script" path="res://Scripts/PauseMenu/pause_button.gd" id="3_lhsww"]
 [ext_resource type="LabelSettings" uid="uid://dc77krh0acv41" path="res://Resources/UI/Timer/timer_label_settings.tres" id="4_5f4hn"]
 [ext_resource type="Script" path="res://Scripts/Timer/timer_ui.gd" id="4_x2sf4"]
 [ext_resource type="Script" path="res://Scripts/Level/level_ui.gd" id="6_aum0h"]
-[ext_resource type="PackedScene" uid="uid://ck5r3o4fypx2n" path="res://Scenes/pause_menu.tscn" id="8_cf6d8"]
+[ext_resource type="PackedScene" uid="uid://ck5r3o4fypx2n" path="res://Scenes/PackedScenes/PauseMenu/pause_menu.tscn" id="8_cf6d8"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_it8sk")
@@ -78,16 +78,6 @@ label_settings = ExtResource("4_5f4hn")
 horizontal_alignment = 2
 script = ExtResource("6_aum0h")
 
-[node name="PauseMenu" parent="." instance=ExtResource("8_cf6d8")]
-visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 1152.0
-offset_bottom = 647.0
-grow_horizontal = 1
-grow_vertical = 1
-
 [node name="TODOText" type="RichTextLabel" parent="."]
 visible = false
 offset_left = 655.0
@@ -127,5 +117,15 @@ text = "Controls:
 		Keyboard: ESC
 		Mouse: The button on the corner
 		Gamepad: Options/Start/+"
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_cf6d8")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1152.0
+offset_bottom = 647.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="pressed" from="PauseButton" to="PauseButton" method="_on_pause_button_pressed"]

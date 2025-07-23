@@ -1,11 +1,16 @@
 class_name PauseMenu extends Control
 
+const options_menu_preload: PackedScene = preload("res://Scenes/PackedScenes/PauseMenu/options_menu.tscn")
+
 var prev_focus_node: Control
 var prev_game_state: int
 
-@onready var continue_button: Button = $VBoxContainer/ContinueButton
-@onready var restart_button: Button = $VBoxContainer/RestartButton
-@onready var quit_button: Button = $VBoxContainer/QuitButton
+@onready var menu_container: VBoxContainer = $PauseMenu_Main
+@onready var options_container: OptionsMenu = $OptionsMenu
+@onready var continue_button: Button = $PauseMenu_Main/ContinueButton
+@onready var restart_button: Button = $PauseMenu_Main/RestartButton
+@onready var options_button: Button = $PauseMenu_Main/OptionsButton
+@onready var quit_button: Button = $PauseMenu_Main/QuitButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,12 +35,17 @@ func show_pause_menu() -> void:
 	prev_focus_node = get_viewport().gui_get_focus_owner()
 	continue_button.grab_focus()
 
-
 func hide_pause_menu() -> void:
 	# Returns the focus to the previous owner before opening the pause menu
 	prev_focus_node.grab_focus()
 	Game.update_game_state(prev_game_state)
 	self.visible = false
+
+# TODO: Fix options menu not showing because instantiate returns null
+func show_options_menu() -> void:
+	menu_container.visible = false
+	options_container.visible = true
+	options_container.back_button.grab_focus()
 
 
 func on_continue_pressed() -> void:
@@ -52,6 +62,20 @@ func on_restart_pressed() -> void:
 func on_restart_input_pressed(event: InputEvent) -> void:
 	if InputMap.event_is_action(event, "accept"):
 		Game.restart()
+
+
+func on_options_pressed() -> void:
+	show_options_menu()
+
+func on_options_input_pressed(event: InputEvent) -> void:
+	if InputMap.event_is_action(event, "accept"):
+		Game.restart()
+
+func on_return_to_menu_pressed() -> void:
+	options_container.visible = false
+	menu_container.visible = true
+	options_button.grab_focus()
+	
 
 
 func on_quit_pressed() -> void:

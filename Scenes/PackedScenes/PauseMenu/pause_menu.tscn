@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck5r3o4fypx2n"]
+
+[ext_resource type="Material" uid="uid://sx4trf4408mv" path="res://Resources/UI/PauseMenu/bg_material.tres" id="1_b2vau"]
+[ext_resource type="Script" path="res://Scripts/PauseMenu/pause_menu.gd" id="1_v670g"]
+[ext_resource type="Theme" uid="uid://dxgmy2frydty" path="res://Resources/UI/Button/button_theme.tres" id="2_30780"]
+[ext_resource type="PackedScene" uid="uid://cdhmib3fb0jq4" path="res://Scenes/PackedScenes/PauseMenu/options_menu.tscn" id="4_w0a2l"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v670g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("1_b2vau")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.690196)
+
+[node name="PauseMenu_Main" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -108.5
+offset_right = 71.5
+offset_bottom = 108.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="ContinueButton" type="Button" parent="PauseMenu_Main"]
+layout_mode = 2
+theme = ExtResource("2_30780")
+text = "Continue"
+
+[node name="RestartButton" type="Button" parent="PauseMenu_Main"]
+layout_mode = 2
+theme = ExtResource("2_30780")
+text = "Restart"
+
+[node name="OptionsButton" type="Button" parent="PauseMenu_Main"]
+layout_mode = 2
+theme = ExtResource("2_30780")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="PauseMenu_Main"]
+layout_mode = 2
+theme = ExtResource("2_30780")
+text = "Quit"
+
+[node name="OptionsMenu" parent="." instance=ExtResource("4_w0a2l")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -45.0
+offset_right = 72.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="gui_input" from="PauseMenu_Main/ContinueButton" to="." method="on_continue_input_pressed"]
+[connection signal="pressed" from="PauseMenu_Main/ContinueButton" to="." method="on_continue_pressed"]
+[connection signal="gui_input" from="PauseMenu_Main/RestartButton" to="." method="on_restart_input_pressed"]
+[connection signal="pressed" from="PauseMenu_Main/RestartButton" to="." method="on_restart_pressed"]
+[connection signal="pressed" from="PauseMenu_Main/OptionsButton" to="." method="on_options_pressed"]
+[connection signal="gui_input" from="PauseMenu_Main/QuitButton" to="." method="on_quit_input_pressed"]
+[connection signal="pressed" from="PauseMenu_Main/QuitButton" to="." method="on_quit_pressed"]

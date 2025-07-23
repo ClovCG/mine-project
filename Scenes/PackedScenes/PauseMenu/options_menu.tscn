@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdhmib3fb0jq4"]
+
+[ext_resource type="Theme" uid="uid://dxgmy2frydty" path="res://Resources/UI/Button/button_theme.tres" id="1_1tiv2"]
+[ext_resource type="Script" path="res://Scripts/PauseMenu/options_menu.gd" id="1_wbue2"]
+
+[node name="OptionsMenu" type="VBoxContainer"]
+offset_right = 150.0
+offset_bottom = 90.0
+theme_override_constants/separation = 15
+script = ExtResource("1_wbue2")
+
+[node name="ControlsButton" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_1tiv2")
+text = "Controls"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_1tiv2")
+text = "Back"
