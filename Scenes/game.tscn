@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://kty4r1vss8ip"]
+[gd_scene load_steps=11 format=3 uid="uid://kty4r1vss8ip"]
 
 [ext_resource type="Script" path="res://Scripts/Game/game.gd" id="1_it8sk"]
 [ext_resource type="Script" path="res://Scripts/Game/mine_grid.gd" id="2_kcg7k"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/PauseMenu/pause_button.gd" id="3_lhsww"]
 [ext_resource type="LabelSettings" uid="uid://dc77krh0acv41" path="res://Resources/UI/Timer/timer_label_settings.tres" id="4_5f4hn"]
 [ext_resource type="Script" path="res://Scripts/Timer/timer_ui.gd" id="4_x2sf4"]
+[ext_resource type="Script" path="res://Scripts/Level/next_level_button.gd" id="5_xpysv"]
 [ext_resource type="Script" path="res://Scripts/Level/level_ui.gd" id="6_aum0h"]
 [ext_resource type="PackedScene" uid="uid://ck5r3o4fypx2n" path="res://Scenes/PackedScenes/PauseMenu/pause_menu.tscn" id="8_cf6d8"]
 
@@ -18,25 +19,39 @@ offset_left = 50.0
 offset_top = 50.0
 offset_right = 550.0
 offset_bottom = 550.0
-focus_neighbor_right = NodePath("../PauseButton")
-focus_next = NodePath("../PauseButton")
-focus_previous = NodePath("../PauseButton")
 focus_mode = 2
 columns = 10
 script = ExtResource("2_kcg7k")
 rows = 10
 
-[node name="PauseButton" type="Button" parent="."]
-offset_left = 1000.0
+[node name="ButtonContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 50)
+layout_direction = 3
+offset_left = -1080.0
 offset_top = 550.0
-offset_right = 1095.0
-offset_bottom = 592.0
-focus_neighbor_left = NodePath("../GridContainer")
-focus_next = NodePath("../GridContainer")
-focus_previous = NodePath("../GridContainer")
+offset_right = -880.0
+offset_bottom = 600.0
+focus_mode = 2
+theme_override_constants/separation = 30
+
+[node name="PauseButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 2.85
+focus_neighbor_left = NodePath("../NextLevelButton")
+focus_previous = NodePath("../NextLevelButton")
 theme = ExtResource("3_1hsi1")
 text = "Pause"
 script = ExtResource("3_lhsww")
+
+[node name="NextLevelButton" type="Button" parent="ButtonContainer"]
+visible = false
+layout_mode = 2
+focus_neighbor_right = NodePath("../PauseButton")
+focus_next = NodePath("../../GridContainer")
+focus_previous = NodePath("../PauseButton")
+theme = ExtResource("3_1hsi1")
+text = "Next Level"
+script = ExtResource("5_xpysv")
 
 [node name="IngameTimer" type="Node" parent="."]
 script = ExtResource("3_7rdib")
@@ -83,46 +98,6 @@ label_settings = ExtResource("4_5f4hn")
 horizontal_alignment = 2
 script = ExtResource("6_aum0h")
 
-[node name="TODOText" type="RichTextLabel" parent="."]
-visible = false
-offset_left = 655.0
-offset_top = 351.0
-offset_right = 956.0
-offset_bottom = 595.0
-text = "TODO:
-	- How to play menu
-	- On win/lose:
-		- Show restart/next level button
-		- Show exit button
-		- Block pause"
-
-[node name="ControlsText" type="RichTextLabel" parent="."]
-offset_left = 655.0
-offset_top = 50.0
-offset_right = 956.0
-offset_bottom = 550.0
-text = "Controls:
-	- Dig:
-		- Keyboard: E
-		- Mouse: Left Click
-		- Gamepad:
-			Cross (PS)
-			A (Xbox)
-			B (Switch)
-
-	- Set/Remove flag:
-		- Keyboard: F
-		- Mouse: Right click
-		- Gamepad:
-			Square (PS)
-			X (Xbox)
-			Y (Switch)
-
-	- Pause
-		Keyboard: ESC
-		Mouse: The button on the corner
-		Gamepad: Options/Start/+"
-
 [node name="PauseMenu" parent="." instance=ExtResource("8_cf6d8")]
 visible = false
 anchors_preset = 0
@@ -133,5 +108,7 @@ offset_bottom = 647.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[connection signal="gui_input" from="PauseButton" to="PauseButton" method="_on_pause_button_input_pressed"]
-[connection signal="pressed" from="PauseButton" to="PauseButton" method="_on_pause_button_pressed"]
+[connection signal="gui_input" from="ButtonContainer/PauseButton" to="ButtonContainer/PauseButton" method="_on_pause_button_input_pressed"]
+[connection signal="pressed" from="ButtonContainer/PauseButton" to="ButtonContainer/PauseButton" method="_on_pause_button_pressed"]
+[connection signal="gui_input" from="ButtonContainer/NextLevelButton" to="ButtonContainer/NextLevelButton" method="_on_next_level_input_pressed"]
+[connection signal="pressed" from="ButtonContainer/NextLevelButton" to="ButtonContainer/NextLevelButton" method="_on_next_level_pressed"]

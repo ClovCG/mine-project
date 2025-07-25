@@ -1,12 +1,12 @@
 class_name PauseMenu extends Control
 
-const options_menu_preload: PackedScene = preload("res://Scenes/PackedScenes/PauseMenu/options_menu.tscn")
-
 var prev_focus_node: Control
 var prev_game_state: int
 
 @onready var menu_container: VBoxContainer = $PauseMenu_Main
 @onready var options_container: OptionsMenu = $OptionsMenu
+@onready var controls_container: ControlsMenu = $ControlsMenu
+
 @onready var continue_button: Button = $PauseMenu_Main/ContinueButton
 @onready var restart_button: Button = $PauseMenu_Main/RestartButton
 @onready var options_button: Button = $PauseMenu_Main/OptionsButton
@@ -41,6 +41,7 @@ func hide_pause_menu() -> void:
 	prev_focus_node.grab_focus()
 	Game.update_game_state(prev_game_state)
 	options_container.visible = false
+	controls_container.visible = false
 	self.visible = false
 
 func show_options_menu() -> void:
@@ -66,11 +67,11 @@ func _on_restart_input_pressed(event: InputEvent) -> void:
 
 
 func _on_options_pressed() -> void:
-	show_options_menu()
+	options_container.show_options_menu()
 
 func _on_options_input_pressed(event: InputEvent) -> void:
 	if InputMap.event_is_action(event, "accept") and event.is_pressed():
-		show_options_menu()
+		options_container.show_options_menu()
 
 func _on_return_to_menu_pressed() -> void:
 	options_container.visible = false

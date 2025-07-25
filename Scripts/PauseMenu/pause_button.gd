@@ -1,6 +1,6 @@
 class_name PauseButton extends Button
 
-@onready var pause_menu: PauseMenu = $"../PauseMenu"
+@onready var pause_menu: PauseMenu = $"../../PauseMenu"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -11,7 +11,8 @@ var tiles: Array[Array] = []
 var tiles_dict: Dictionary = {} # "mine_position": MineTile
 
 @onready var timer: IngameTimer = $"../IngameTimer"
-@onready var pause_button: PauseButton = $"../PauseButton"
+@onready var next_level_button: Button = $"../ButtonContainer/NextLevelButton"
+@onready var pause_button: PauseButton = $"../ButtonContainer/PauseButton"
 @onready var pause_menu: PauseMenu = $"../PauseMenu"
 
 # Called when the node enters the scene tree for the first time.
@@ -98,3 +99,14 @@ func reveal_mines() -> void:
 	timer.stopped = true
 	for mine_pos in mine_position:
 		tiles_dict[str(mine_pos)].show_tile()
+	
+	# Show the next level button and set the focus neighbors accordingly
+	next_level_button.visible = true
+	next_level_button.focus_previous = NodePath(tiles_dict["99"].get_path())
+	next_level_button.focus_next = NodePath(pause_button.get_path())
+	next_level_button.focus_neighbor_left = NodePath(tiles_dict["99"].get_path())
+	next_level_button.focus_neighbor_right = NodePath(pause_button.get_path())
+	pause_button.focus_previous = NodePath(next_level_button.get_path())
+	pause_button.focus_neighbor_left = NodePath(next_level_button.get_path())
+	
+	next_level_button.text = "Next Level" if Game.game_state == Game.GAME_STATE.CLEARED else "Restart"

@@ -1,0 +1,150 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgtx6g811smyk"]
+
+[ext_resource type="Script" path="res://Scripts/PauseMenu/controls_menu.gd" id="1_ogip6"]
+[ext_resource type="Theme" uid="uid://dxgmy2frydty" path="res://Resources/UI/Button/button_theme.tres" id="2_glue1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lw2v"]
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.114067, 0.410963, 0.65728, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.00486805, 0.223553, 0.277288, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fc111"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5d6i"]
+content_margin_left = 20.0
+content_margin_top = 15.0
+content_margin_right = 20.0
+bg_color = Color(0.0528584, 0.249479, 0.41635, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_color = Color(0, 0.121569, 0.152941, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enxmp"]
+content_margin_left = 20.0
+content_margin_top = 15.0
+content_margin_right = 20.0
+bg_color = Color(0.113725, 0.411765, 0.658824, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_color = Color(0.00392157, 0.223529, 0.278431, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ao21f"]
+content_margin_left = 20.0
+content_margin_top = 15.0
+content_margin_right = 20.0
+bg_color = Color(0.0187011, 0.146466, 0.25476, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_color = Color(0.00129975, 0.119752, 0.154192, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+
+[sub_resource type="Theme" id="Theme_u534j"]
+TabContainer/colors/font_outline_color = Color(0.188235, 0.188235, 0.188235, 1)
+TabContainer/colors/font_unselected_color = Color(0.564706, 0.564706, 0.564706, 1)
+TabContainer/constants/outline_size = 10
+TabContainer/font_sizes/font_size = 20
+TabContainer/styles/panel = SubResource("StyleBoxFlat_0lw2v")
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_fc111")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_k5d6i")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_enxmp")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_ao21f")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t34ve"]
+
+[node name="ControlsMenu" type="TabContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 31.0
+offset_right = -64.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_u534j")
+theme_override_constants/side_margin = 15
+theme_override_font_sizes/font_size = 20
+current_tab = 0
+script = ExtResource("1_ogip6")
+
+[node name="Controls" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_t34ve")
+metadata/_tab_index = 0
+
+[node name="Controls_Text" type="RichTextLabel" parent="Controls"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.941176, 0.941176, 0.941176, 1)
+theme_override_constants/table_v_separation = 20
+theme_override_constants/table_h_separation = 30
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[table=4]
+	[cell][/cell][cell]Mouse	[/cell][cell]Keyboard		[/cell][cell]Gamepad[/cell]
+	[cell]Dig[/cell][cell]Left Click	[/cell][cell]E[/cell][cell][color=cornflowerblue]Cross [/color](Playstation) 		/ [color=green]A[/color] (Xbox)	/ [color=yellow]B[/color] (Nintendo)[/cell]
+	[cell]Set/Remove flag		[/cell][cell]Right Click				[/cell][cell]F[/cell][cell][color=violet]Square[/color] (Playstation)	/ [color=dodgerblue]X[/color] (Xbox)	/ [color=lawngreen]Y[/color] (Nintendo)[/cell]
+	[cell]Pause[/cell][cell][/cell][cell]ESC[/cell][cell]Options - Start - Menu - +[/cell]
+[/table]"
+drag_and_drop_selection_enabled = false
+
+[node name="HowToPlay" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 2
+theme_override_colors/default_color = Color(0.941176, 0.941176, 0.941176, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/line_separation = -2
+theme_override_font_sizes/normal_font_size = 20
+text = "The goal of this game is clearing all the tiles on the field without touching any mines.
+
+
+Each tile has a number indicating how many mines are on their immediately adjacent tiles. If the tile has no number, it means there are no mines around and will automatically clear its adjacent tiles as well.
+
+
+The level is cleared when all the tiles without mines are clear. This unlocks the next level, which has an extra mine.
+Clearing a tile with a mine will result in a game over and will reveal the location of all mines in the field.
+
+
+With this information in mind, I wish you good luck and happy digging!
+
+"
+metadata/_tab_index = 1
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(860, 431)
+
+[node name="BackButton" type="Button" parent="Node2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 59.0
+offset_right = 100.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_glue1")
+text = "Back"
