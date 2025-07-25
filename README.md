@@ -34,7 +34,7 @@ Check the changelog in the releases section.
 
 ## Download
 
-The game can be downloaded by [clicking here](https://github.com/ClovCG/mine-project/releases/tag/1.0.0) (or by going to the releases section of this page). Game is plug and play, no installation needed.
+The game can be downloaded by [clicking here](https://github.com/ClovCG/mine-project/releases/latest) (or by going to the releases section of this page). Game is plug and play, no installation needed.
 
 ## Installation
 
