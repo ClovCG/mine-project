@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Game="*res://Scripts/Game/game.gd"
 Utils="*res://Scripts/Globals/Misc/utils.gd"
+Strings="*res://Scripts/Globals/Misc/strings.gd"
 
 [debug]
 

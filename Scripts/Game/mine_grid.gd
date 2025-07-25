@@ -11,6 +11,8 @@ var tiles: Array[Array] = []
 var tiles_dict: Dictionary = {} # "mine_position": MineTile
 
 @onready var timer: IngameTimer = $"../IngameTimer"
+@onready var mines_label: Label = $"../Mines"
+@onready var end_label: Label = $"../EndText"
 @onready var next_level_button: Button = $"../ButtonContainer/NextLevelButton"
 @onready var pause_button: PauseButton = $"../ButtonContainer/PauseButton"
 @onready var pause_menu: PauseMenu = $"../PauseMenu"
@@ -25,6 +27,7 @@ func _ready() -> void:
 	
 	# Once everything is reset, set up the new grid
 	mines += Game.level
+	mines_label.text = Strings.LABEL_MINES % mines
 	Game.flags = mines
 	set_up()
 
@@ -101,12 +104,19 @@ func reveal_mines() -> void:
 		tiles_dict[str(mine_pos)].show_tile()
 	
 	# Show the next level button and set the focus neighbors accordingly
-	next_level_button.visible = true
 	next_level_button.focus_previous = NodePath(tiles_dict["99"].get_path())
 	next_level_button.focus_next = NodePath(pause_button.get_path())
 	next_level_button.focus_neighbor_left = NodePath(tiles_dict["99"].get_path())
 	next_level_button.focus_neighbor_right = NodePath(pause_button.get_path())
 	pause_button.focus_previous = NodePath(next_level_button.get_path())
 	pause_button.focus_neighbor_left = NodePath(next_level_button.get_path())
+	next_level_button.visible = true
+	end_label.visible = true
 	
-	next_level_button.text = "Next Level" if Game.game_state == Game.GAME_STATE.CLEARED else "Restart"
+	if Game.game_state == Game.GAME_STATE.CLEARED:
+		next_level_button.text = Strings.BUTTON_NEXTLEVEL
+		pause_menu.restart_button.text = Strings.BUTTON_NEXTLEVEL
+		end_label.text = Strings.LABEL_END_WIN
+		return
+	next_level_button.text = Strings.BUTTON_RESTART
+	end_label.text = Strings.LABEL_END_LOSE

@@ -15,14 +15,14 @@ func _ready() -> void:
 func show_options_menu() -> void:
 	pause_menu.menu_container.visible = false
 	self.visible = true
-	back_button.grab_focus()
+	controls_button.grab_focus()
 
 # SIGNAL METHODS #
 func _on_controls_pressed() -> void:
 	controls_container.show_controls_menu()
 
 func _on_controls_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, "accept") and event.is_pressed():
+	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed():
 		controls_container.show_controls_menu()
 
 func _on_return_to_options_pressed() -> void:
@@ -31,7 +31,7 @@ func _on_return_to_options_pressed() -> void:
 	controls_button.grab_focus()
 
 func _on_return_to_options_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, "accept") and event.is_pressed():
+	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed():
 		controls_container.visible = false
 		self.visible = true
 		controls_button.grab_focus()

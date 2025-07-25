@@ -9,8 +9,8 @@ var options_container: OptionsMenu
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	options_container = get_node_or_null("../OptionsMenu")
-	set_tab_title(0, "Controls")
-	set_tab_title(1, "How to play")
+	set_tab_title(0, Strings.CONTROLS_MENU_CONTROLS_TAB)
+	set_tab_title(1, Strings.CONTROLS_MENU_HOWTOPLAY_TAB)
 	back_button.connect("pressed", func(): options_container._on_return_to_options_pressed())
 	back_button.connect("gui_input", func(event: InputEvent): options_container._on_return_to_options_input_pressed(event))
 

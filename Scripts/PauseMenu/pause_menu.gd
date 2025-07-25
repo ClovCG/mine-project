@@ -22,9 +22,9 @@ func _process(_delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Handles menu pause from keyboard/gamepad inputs
-	if event.is_action_pressed("start") and self.visible:
+	if event.is_action_pressed(Strings.INPUT_ACTION_START) and self.visible:
 		hide_pause_menu()
-	elif event.is_action_pressed("start") and !self.visible:
+	elif event.is_action_pressed(Strings.INPUT_ACTION_START) and !self.visible:
 		show_pause_menu()
 
 func show_pause_menu() -> void:
@@ -54,7 +54,7 @@ func _on_continue_pressed() -> void:
 	hide_pause_menu()
 
 func _on_continue_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, "accept") and event.is_pressed():
+	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed():
 		hide_pause_menu()
 
 
@@ -62,7 +62,7 @@ func _on_restart_pressed() -> void:
 	Game.restart()
 
 func _on_restart_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, "accept") and event.is_pressed():
+	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed():
 		Game.restart()
 
 
@@ -70,7 +70,7 @@ func _on_options_pressed() -> void:
 	options_container.show_options_menu()
 
 func _on_options_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, "accept") and event.is_pressed():
+	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed():
 		options_container.show_options_menu()
 
 func _on_return_to_menu_pressed() -> void:
@@ -79,7 +79,7 @@ func _on_return_to_menu_pressed() -> void:
 	options_button.grab_focus()
 
 func _on_return_to_menu_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, "accept") and event.is_pressed():
+	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed():
 		options_container.visible = false
 		menu_container.visible = true
 		options_button.grab_focus()
@@ -89,5 +89,5 @@ func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 func _on_quit_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, "accept") and event.is_pressed():
+	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed():
 		get_tree().quit()

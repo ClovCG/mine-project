@@ -29,10 +29,10 @@ func _on_mouse_exited() -> void:
 func _on_tile_pressed(event: InputEvent) -> void:
 	if Game.game_state == Game.GAME_STATE.IN_PROGRESS and event.is_pressed() and not checked:
 		# Shows the content of the tile as long as there's no flag
-		if InputMap.event_is_action(event, "accept") and not flagged:
+		if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and not flagged:
 			show_tile()
 		# Puts/Removes a flag on the tile
-		elif InputMap.event_is_action(event, "set_flag"):
+		elif InputMap.event_is_action(event, Strings.INPUT_ACTION_SETFLAG):
 			if not flagged and Game.flags_used < Game.flags:
 				self.flagged = true
 				Game.flags_used += 1
@@ -48,7 +48,7 @@ func show_tile() -> void:
 	label.text = self.num
 
 	if Game.game_state == Game.GAME_STATE.IN_PROGRESS:
-		self.color = Color("3b3b3b")
+		self.color = Color(Strings.COLOR_DARKGRAY)
 		grid.tiles_left -= 1
 		match num:
 			# Tile has a mine --> Game Over
@@ -68,7 +68,7 @@ func show_tile() -> void:
 	
 	# The conditions below are only true when the game is finished
 	elif Game.game_state == Game.GAME_STATE.LOST:
-		self.color = Color("C64500")
+		self.color = Color(Strings.COLOR_RED)
 	else:
-		self.color = Color("208ab3")
+		self.color = Color(Strings.COLOR_BLUE)
 		label.text = "!"
