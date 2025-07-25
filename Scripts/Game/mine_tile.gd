@@ -54,7 +54,7 @@ func show_tile() -> void:
 			# Tile has a mine --> Game Over
 			"X":
 				Game.game_state = Game.GAME_STATE.LOST
-				Game.level = 0
+				Game.level = 1
 				grid.reveal_mines()
 			# Tile is empty --> Show the adjacent tiles too
 			"":

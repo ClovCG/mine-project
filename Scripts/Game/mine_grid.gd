@@ -115,7 +115,6 @@ func reveal_mines() -> void:
 	
 	if Game.game_state == Game.GAME_STATE.CLEARED:
 		next_level_button.text = Strings.BUTTON_NEXTLEVEL
-		pause_menu.restart_button.text = Strings.BUTTON_NEXTLEVEL
 		end_label.text = Strings.LABEL_END_WIN
 		return
 	next_level_button.text = Strings.BUTTON_RESTART
