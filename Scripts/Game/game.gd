@@ -17,7 +17,7 @@ var prev_focused_tile: MineTile
 
 # Restarts the game/scene
 func restart() -> void:
-	level = level + 1 if Game.game_state == Game.GAME_STATE.CLEARED else 1
+	level = level + 1 if game_state == GAME_STATE.CLEARED else 1
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
 
 
