@@ -26,7 +26,7 @@ func _ready() -> void:
 	tiles_left = rows * self.columns
 	
 	# Once everything is reset, set up the new grid
-	mines += Game.level
+	mines += Game.level - 1
 	mines_label.text = Strings.LABEL_MINES % mines
 	Game.flags = mines
 	set_up()

@@ -63,7 +63,6 @@ func show_tile() -> void:
 		# Last condition avoids the win when mine is hit with 2 tiles left
 		if grid.tiles_left == grid.mines and Game.game_state != Game.GAME_STATE.LOST:
 			Game.game_state = Game.GAME_STATE.CLEARED
-			Game.level += 1
 			grid.reveal_mines()
 	
 	# The conditions below are only true when the game is finished
