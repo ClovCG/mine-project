@@ -16,5 +16,5 @@ func _on_pause_button_pressed() -> void:
 	pause_menu.show_pause_menu()
 
 func _on_pause_button_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed():
+	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed() and event is not InputEventMouseButton:
 		pause_menu.show_pause_menu()

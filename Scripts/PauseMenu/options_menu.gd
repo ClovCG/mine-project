@@ -22,7 +22,7 @@ func _on_controls_pressed() -> void:
 	controls_container.show_controls_menu()
 
 func _on_controls_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed():
+	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed() and event is not InputEventMouseButton:
 		controls_container.show_controls_menu()
 
 func _on_return_to_options_pressed() -> void:
@@ -31,7 +31,7 @@ func _on_return_to_options_pressed() -> void:
 	controls_button.grab_focus()
 
 func _on_return_to_options_input_pressed(event: InputEvent) -> void:
-	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed():
+	if InputMap.event_is_action(event, Strings.INPUT_ACTION_ACCEPT) and event.is_pressed() and event is not InputEventMouseButton:
 		controls_container.visible = false
 		self.visible = true
 		controls_button.grab_focus()
