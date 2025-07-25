@@ -19,13 +19,14 @@ Mouse, keyboard and gamepad supported. To check the input configuration in detai
 
 ## Current bugs/glitches
 
-No current bugs/glitches reported for now, but there might be stuff I have yet to come up to.
+No current bugs/glitches reported for now, but there might be stuff I have yet to find.
 
 ## Planned upcoming features
 
 - Audio
 - Animated UI
 - Some accessibility options
+- Spanish localization
 
 ## Supported platforms
 
@@ -33,4 +34,4 @@ No current bugs/glitches reported for now, but there might be stuff I have yet t
 
 ## Download
 
-The game can be downloading by [clicking here](https://github.com/ClovCG/mine-project/releases/tag/1.0.0) (or by going to the releases section of this page) and selecting the .zip file. Game is plug and play, no installation needed.
+The game can be downloading by [clicking here](https://github.com/ClovCG/mine-project/releases/tag/1.0.0) (or by going to the releases section of this page) and selecting the .zip file of the desired version. Game is plug and play, no installation needed.
