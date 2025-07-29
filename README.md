@@ -17,16 +17,14 @@ With this information in mind, I wish you good luck and happy digging!
 
 Mouse, keyboard and gamepad supported. To check the input configuration in detail, please go the "controls" options in the pause menu.
 
-## Current bugs/glitches
-
-Check the changelog in the releases section.
-
 ## Planned upcoming features
 
 - Audio
+- Main menu screen
 - Animated UI
 - Some accessibility options
 - Spanish localization
+- Custom grid sizes
 
 ## Supported platforms
 
@@ -34,9 +32,9 @@ Check the changelog in the releases section.
 
 ## Download
 
-The game can be downloaded by [clicking here](https://github.com/ClovCG/mine-project/releases/latest) (or by going to the releases section of this page). Game is plug and play, no installation needed.
+The game can be downloaded by [clicking here](https://github.com/ClovCG/mine-project/releases/latest) (or by manually going to the releases section of this page). Game is plug and play, no fancy installation needed.
 
 ## Installation
 
-1. Extract all files in the same folder/directory
-2. Play
+1. Extract all files in the same folder/directory.
+2. Play.
